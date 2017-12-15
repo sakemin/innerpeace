@@ -76,7 +76,7 @@ var Particle = function (pos) {
 
     this.vel = createVector(vx,vy);
     this.acc = createVector();
-    this.lifespan = 100.0;
+    this.lifespan = 80.0;
 }
 
 /**

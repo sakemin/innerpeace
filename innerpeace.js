@@ -10,7 +10,7 @@ var mindtic = 0;
 var sec = 60;
 var word;
 var isSpeaking = false;
-var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage
+var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety
 // variable holding our particle system
 var ps = null;
 
@@ -56,7 +56,7 @@ function infinity() {
   highMid += increment;
   spectralCentroid = fft.getCentroid();
   console.log(highMid);
-  hueVal = map(highMid, 0, 4, 120, 50);
+  hueVal = map(highMid, 0, 4, 120, -30);
   if (hueVal < 55) {
     hueVal = 55;
   }
@@ -218,6 +218,7 @@ function updateWords() {
       showWords("#w2-3");
       showWords("#w2-4");
       showWords("#w2-5");
+      showWords("#w2-6");
     }
   }
 
@@ -363,6 +364,42 @@ function updateWords() {
       mode = 0;
     }
   }
+  if (mode == 7) { //anxiety
+    toggleWords("#w7-1", 1, 5);
+    toggleWords("#w7-2", 7, 11);
+    toggleWords("#w7-3", 13, 17);
+    toggleWords("#w7-4", 19, 23);
+    toggleWords("#w7-5", 25, 29);
+    toggleWords("#w7-6", 31, 35);
+    toggleWords("#w7-7", 37, 41);
+    toggleWords("#w7-8", 42, 47);
+    toggleWords("#w7-9", 49, 53);
+    toggleWords("#w7-10", 55, 59);
+    toggleWords("#w7-11", 61, 65);
+    toggleWords("#w7-12", 67, 71);
+    toggleWords("#w7-13", 73, 77);
+    toggleWords("#w7-14", 78, 83);
+    toggleWords("#w7-15", 87, 91);
+    toggleWords("#w7-16", 93, 97);
+    toggleWords("#w7-17", 99, 103);
+    toggleWords("#w7-18", 104, 108);
+    toggleWords("#w7-19", 110, 114);
+    toggleWords("#w7-20", 115, 119);
+    toggleWords("#w7-21", 121, 125);
+    toggleWords("#w7-22", 127, 131);
+    toggleWords("#w7-23", 133, 137);
+    toggleWords("#w7-24", 139, 143);
+    toggleWords("#w7-25", 145, 149);
+    toggleWords("#w7-26", 151, 155);
+    toggleWords("#w7-27", 157, 161);
+    toggleWords("#w7-28", 163, 167);
+    toggleWords("#w7-29", 169, 173);
+    toggleWords("#w7-30", 174, 179);
+    if (tic == 179 * sec) {
+      tic = 22 * sec;
+      mode = 0;
+    }
+  }
 }
 
 function showWords(_str) {
@@ -399,4 +436,5 @@ function feelChoose(n) {
   hideSpecificWords("#w2-3");
   hideSpecificWords("#w2-4");
   hideSpecificWords("#w2-5");
+  hideSpecificWords("#w2-6");
 }
