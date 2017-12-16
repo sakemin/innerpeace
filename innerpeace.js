@@ -10,7 +10,7 @@ var mindtic = 0;
 var sec = 60;
 var word;
 var isSpeaking = false;
-var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety
+var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro
 // variable holding our particle system
 var ps = null;
 
@@ -22,12 +22,13 @@ var smoothVal = 0.1;
 var mobiusX = [];
 var mobiusY = [];
 
-
+var logo;
 // var maxParticles, particleBreakDistance, repelDist;
 // var particles = [];
 
 function preload() {
   mySound = loadSound('assets/final_innerpeace.mp3');
+  logo = loadImage('assets/logo.png');
 }
 
 function setup() {
@@ -39,9 +40,8 @@ function setup() {
   background(0);
   fft = new p5.FFT();
   mySound.setVolume(1);
-  mySound.loop();
   colorMode(HSB,360,100,100,100);
-
+  imageMode(CENTER);
   // maxParticles = 90;
   //   //repelDist = max(width, height)/8;
   //   particleBreakDistance = max(width, height) / 50;
@@ -60,7 +60,22 @@ function draw() {
   // drawParticles();
   // particleBreakDistance = min(particleBreakDistance + 1, width / 12);
 
-  infinity();
+  if(mode!=10){
+    infinity();
+  }
+  else{
+
+  if(tic<7*sec){
+    image(logo, width/2, height/2);
+  }
+  if(tic==8*sec){
+    mode=0;
+    tic=0;
+    
+    mySound.loop();
+  }
+
+  }
   tic++;
 
 
