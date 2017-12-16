@@ -22,6 +22,10 @@ var smoothVal = 0.1;
 var mobiusX = [];
 var mobiusY = [];
 
+
+// var maxParticles, particleBreakDistance, repelDist;
+// var particles = [];
+
 function preload() {
   mySound = loadSound('assets/final_innerpeace.mp3');
 }
@@ -37,12 +41,28 @@ function setup() {
   mySound.setVolume(1);
   mySound.loop();
   colorMode(HSB,360,100,100,100);
+
+  // maxParticles = 90;
+  //   //repelDist = max(width, height)/8;
+  //   particleBreakDistance = max(width, height) / 50;
+  //   while (particles.length < maxParticles) {
+  //       obj = [createVector(random(width), random(height)), createVector(random(2) - 1, random(2) - 1)];
+  //       particles.push(obj);
+  //   }
 }
 
 function draw() {
+
+  background(0,10);
+
   updateWords();
+  //
+  // drawParticles();
+  // particleBreakDistance = min(particleBreakDistance + 1, width / 12);
+
   infinity();
   tic++;
+
 
 }
 
@@ -75,10 +95,11 @@ function infinity() {
   if (globalTheta >= 360) {
     globalTheta = 0;
   }
-  background(0);
+  push();
   translate(width / 2, 2 * height / 5);
   if (isSpeaking) {
     translate(randomGaussian(0, 1) * 0.5, randomGaussian(0, 1) * 0.5);
+    noFill();
     beginShape();
     for (var theta = 0; theta < 390; theta += 10) {
       var r = 1 + cos(2 * radians(theta));
@@ -86,7 +107,7 @@ function infinity() {
       var localDotX = rr * cos(radians(theta));
       var localDotY = rr * sin(radians(theta));
       strokeWeight(2);
-      stroke(hueVal, 100, 100, 50);
+      stroke(hueVal, 100, 100, 10);
       curveVertex(localDotX, localDotY);
     }
     endShape();
@@ -97,7 +118,7 @@ function infinity() {
       var localDotX = rr * cos(radians(theta));
       var localDotY = rr * sin(radians(theta));
       strokeWeight(2);
-      stroke(hueVal, 100, 100, 50);
+      stroke(hueVal, 100, 100, 5);
       curveVertex(localDotX, localDotY);
     }
     endShape();
@@ -108,7 +129,7 @@ function infinity() {
       var localDotX = rr * cos(radians(theta));
       var localDotY = rr * sin(radians(theta));
       strokeWeight(2);
-      stroke(hueVal, 100, 100, 50);
+      stroke(hueVal, 100, 100, 15);
       curveVertex(localDotX, localDotY);
     }
     endShape();
@@ -120,19 +141,21 @@ function infinity() {
     var localDotX = rr * cos(radians(theta));
     var localDotY = rr * sin(radians(theta));
     strokeWeight(dotSize);
-    stroke(hueVal, 100, 100);
+    stroke(hueVal, 100, 100, 50);
     point(localDotX, localDotY);
 
     var dotdotSize = dotSize * 0.7;
     strokeWeight(dotdotSize);
     localDotX = 0.9 * localDotX;
     localDotY = 0.9 * localDotY;
+    stroke(hueVal, 100, 100, 20);
     point(localDotX, localDotY);
 
     var dotdotdotSize = dotSize * 1.3;
     strokeWeight(dotdotdotSize);
     localDotX = (10 / 9) * 1.1 * localDotX;
     localDotY = (10 / 9) * 1.1 * localDotY;
+    stroke(hueVal, 100, 100, 100);
     point(localDotX, localDotY);
   }
 
@@ -164,6 +187,8 @@ function infinity() {
 
   preDotX = dotX;
   preDotY = dotY;
+
+  pop();
 }
 
 function mousePressed() {
