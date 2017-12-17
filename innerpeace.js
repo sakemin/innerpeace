@@ -1,3 +1,5 @@
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
 var globalStrokeWeight = 5;
 var globalTheta = 90;
 var increasement = 0.375;
@@ -89,11 +91,17 @@ function windowResized() {
 
 function infinity() {
   var spectrum = fft.analyze();
-  var increment = (fft.getEnergy("highMid")-highMid)*smoothVal;
+  var increment = (fft.getEnergy("mid")-highMid)*smoothVal;
   highMid += increment;
   spectralCentroid = fft.getCentroid();
   console.log(highMid);
-  hueVal = map(highMid, 0, 4, 120, -30);
+  if(isChrome){
+    hueVal = map(highMid, 47, 60, 120, -30);
+  }
+  else{
+    hueVal = map(highMid, 60, 80, 120, -30);
+  }
+
   if (hueVal < 55) {
     hueVal = 55;
   }
