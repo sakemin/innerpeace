@@ -105,6 +105,9 @@ function infinity() {
   if (hueVal < 55) {
     hueVal = 55;
   }
+  else if (hueVal > 120) {
+    hueVal = 120;
+  }
   var bassbeat = fft.getEnergy("bass");
   var dotSize = map(bassbeat, 100, 250, 3, 10);
   /*if((globalTheta>=80 && globalTheta <85)||(globalTheta>=95 && globalTheta <100)||(globalTheta>=260 && globalTheta <265)||(globalTheta>=275 && globalTheta <280)){
