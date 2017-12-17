@@ -27,7 +27,7 @@ var logo;
 // var particles = [];
 
 function preload() {
-  mySound = loadSound('assets/final_innerpeace.mp3');
+  mySound = loadSound('assets/final_innerpeace_remaster.mp3');
   logo = loadImage('assets/logo.png');
 }
 
@@ -71,7 +71,7 @@ function draw() {
   if(tic==8*sec){
     mode=0;
     tic=0;
-    
+
     mySound.loop();
   }
 
