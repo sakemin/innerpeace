@@ -11,7 +11,7 @@ var sec = 60;
 var word;
 var isSpeaking = false;
 var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety
-// variable holding our particle system
+
 var ps = null;
 
 var hueVal;
