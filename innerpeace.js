@@ -10,13 +10,10 @@ var mindtic = 0;
 var sec = 60;
 var word;
 var isSpeaking = false;
-<<<<<<< HEAD
 var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety
 
-=======
 var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro
-// variable holding our particle system
->>>>>>> ee93df2869dc95b5282f7b66f47baa38dcdf544f
+
 var ps = null;
 
 var hueVal;
@@ -70,13 +67,13 @@ function draw() {
   }
   else{
 
-  if(tic<7*sec){
+  if(tic<3*sec){
     image(logo, width/2, height/2);
   }
-  if(tic==8*sec){
+  if(tic==4*sec){
     mode=0;
     tic=0;
-    
+
     mySound.loop();
   }
 
