@@ -13,7 +13,7 @@ var sec = 60;
 var word;
 var isSpeaking = false;
 
-var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro, 11:quickselect(10clicks)
+var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro, 11:quickselect(25clicks)
 
 var ps = null;
 
