@@ -85,7 +85,7 @@ function draw() {
   tic++;
 
 
-  if(click==10){
+  if(click==25){
     if(word!=undefined){
     hideWords();
   }
