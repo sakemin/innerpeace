@@ -12,9 +12,8 @@ var mindtic = 0;
 var sec = 60;
 var word;
 var isSpeaking = false;
-var mode = 0; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety
 
-var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro
+var mode = 10; //0:idle, 1:mindintro, 2:mindselect, 3:depressment, 4:business, 5:helplessness, 6:rage, 7:anxiety, 10: intro, 11:quickselect(10clicks)
 
 var ps = null;
 
@@ -27,6 +26,8 @@ var mobiusX = [];
 var mobiusY = [];
 
 var logo;
+
+var click = 0;
 // var maxParticles, particleBreakDistance, repelDist;
 // var particles = [];
 
@@ -75,6 +76,7 @@ function draw() {
   if(tic==4*sec){
     mode=0;
     tic=0;
+    click=0;
 
     mySound.loop();
   }
@@ -83,6 +85,14 @@ function draw() {
   tic++;
 
 
+  if(click==10){
+    if(word!=undefined){
+    hideWords();
+  }
+    mode = 11;
+    click = 0;
+    tic=0;
+  }
 }
 
 function windowResized() {
@@ -94,9 +104,9 @@ function infinity() {
   var increment = (fft.getEnergy("mid")-highMid)*smoothVal;
   highMid += increment;
   spectralCentroid = fft.getCentroid();
-  console.log(highMid);
+  //console.log(highMid);
   if(isChrome){
-    hueVal = map(highMid, 47, 60, 120, -30);
+    hueVal = map(highMid, 50, 60, 120, -30);
   }
   else{
     hueVal = map(highMid, 60, 80, 120, -30);
@@ -225,7 +235,11 @@ function mousePressed() {
       hideWords();
       mode = 1;
       tic = 0;
+      click=0;
     }
+  }
+  if(mode!=10 && mode!=2 && mode!=11){
+    click++;
   }
 }
 
@@ -261,6 +275,7 @@ function updateWords() {
     if (tic == 60 * sec) {
       mode = 2;
       tic = 0;
+      click=0;
     }
   }
 
@@ -311,6 +326,7 @@ function updateWords() {
     if (tic == 196 * sec) {
       tic = 22 * sec;
       mode = 0;
+      click=0;
     }
   }
 
@@ -351,6 +367,7 @@ function updateWords() {
     if (tic == 214 * sec) {
       tic = 22 * sec;
       mode = 0;
+      click=0;
     }
   }
 
@@ -382,6 +399,7 @@ function updateWords() {
     if (tic == 155 * sec) {
       tic = 22 * sec;
       mode = 0;
+      click=0;
     }
   }
 
@@ -415,6 +433,7 @@ function updateWords() {
     if (tic == 164 * sec) {
       tic = 22 * sec;
       mode = 0;
+      click=0;
     }
   }
   if (mode == 7) { //anxiety
@@ -451,12 +470,24 @@ function updateWords() {
     if (tic == 179 * sec) {
       tic = 22 * sec;
       mode = 0;
+      click=0;
+    }
+  }
+
+  if(mode==11){//quickselect
+    toggleWords("#w11-1",1,5);
+    toggleWords("#w11-2",7,11);
+    if(tic == 13*sec){
+      tic = 0;
+      mode = 2;
+      click = 0;
     }
   }
 }
 
 function showWords(_str) {
   word = select(_str);
+  console.log(word);
   word.style("display", "block");
 }
 
@@ -485,6 +516,7 @@ function toggleWords(_str, a, b) {
 function feelChoose(n) {
   mode = n;
   tic = 0;
+  click=0;
   hideSpecificWords("#w2-2");
   hideSpecificWords("#w2-3");
   hideSpecificWords("#w2-4");
