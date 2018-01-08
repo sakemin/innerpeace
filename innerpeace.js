@@ -50,7 +50,6 @@ function setup() {
   mySound.setVolume(1);
   colorMode(HSB,360,100,100,100);
   imageMode(CENTER);
-  noSleep.enable();
   // maxParticles = 90;
   //   //repelDist = max(width, height)/8;
   //   particleBreakDistance = max(width, height) / 50;
@@ -62,6 +61,7 @@ function setup() {
 
 function draw() {
 
+  noSleep.enable();
   background(0,10);
 
   updateWords();
