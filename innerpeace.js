@@ -71,7 +71,7 @@ function setup() {
 
 function draw() {
 
-  background(0,30);
+  background(0,100);
 
   updateWords();
   //
