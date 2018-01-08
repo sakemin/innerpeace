@@ -27,6 +27,9 @@ var mobiusY = [];
 
 var logo;
 
+var noSleep = new NoSleep();
+
+
 var click = 0;
 // var maxParticles, particleBreakDistance, repelDist;
 // var particles = [];
@@ -47,6 +50,7 @@ function setup() {
   mySound.setVolume(1);
   colorMode(HSB,360,100,100,100);
   imageMode(CENTER);
+  noSleep.enable();
   // maxParticles = 90;
   //   //repelDist = max(width, height)/8;
   //   particleBreakDistance = max(width, height) / 50;
